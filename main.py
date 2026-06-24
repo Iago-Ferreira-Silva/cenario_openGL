@@ -5,13 +5,13 @@ from OpenGL.GLU import *
 
 # Imports modulares
 from camera import Camera
-from utils import setup_lighting
+from utils import setup_lighting, load_texture
 from stadium import draw_field, draw_grandstands, draw_goal, build_crowd_list, draw_crowd
 from entities import draw_boneco, draw_ball
 
 # Configurações da Janela
-WINDOW_WIDTH = 800
-WINDOW_HEIGHT = 600
+WINDOW_WIDTH = 1280
+WINDOW_HEIGHT = 720
 
 def main():
     pygame.init()
@@ -31,6 +31,9 @@ def main():
     
     # Construir display list da torcida (para não lagar o jogo)
     build_crowd_list()
+    
+    # Carregar texturas
+    grass_tex = load_texture("grass.png")
     
     # Cor de fundo (Céu azul claro radiante de dia)
     glClearColor(0.4, 0.75, 1.0, 1.0)
@@ -60,7 +63,7 @@ def main():
         glTranslatef(-cam.x, -cam.y, -cam.z)
         
         # Desenhando o Cenário
-        draw_field()
+        draw_field(grass_tex)
         draw_grandstands()
         draw_crowd() # Desenha a multidão de pessoas
         draw_goal(-38)

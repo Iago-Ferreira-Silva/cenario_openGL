@@ -4,22 +4,31 @@ import math
 import random
 from utils import draw_cube
 
-def draw_field():
+def draw_field(grass_tex=None):
+    if grass_tex is not None:
+        glEnable(GL_TEXTURE_2D)
+        glBindTexture(GL_TEXTURE_2D, grass_tex)
+
     # Gramado com listras alternadas
     largura_listra = 4
     for z in range(-40, 40, largura_listra):
         if (z // largura_listra) % 2 == 0:
-            glColor3f(0.15, 0.65, 0.15) # Verde mais claro
+            glColor3f(0.8, 1.0, 0.8) # Verde mais claro para tint
         else:
-            glColor3f(0.1, 0.55, 0.1) # Verde mais escuro
+            glColor3f(0.6, 0.9, 0.6) # Verde mais escuro para tint
             
         glNormal3f(0, 1, 0)
         glBegin(GL_QUADS)
-        glVertex3f(-30, 0, z)
-        glVertex3f(-30, 0, z + largura_listra)
-        glVertex3f(30, 0, z + largura_listra)
-        glVertex3f(30, 0, z)
+        
+        # Coordenadas da textura mapeadas proporcionalmente ao mundo (1 repetição a cada 4 unidades)
+        glTexCoord2f(-7.5, z / 4.0); glVertex3f(-30, 0, z)
+        glTexCoord2f(-7.5, (z + largura_listra) / 4.0); glVertex3f(-30, 0, z + largura_listra)
+        glTexCoord2f(7.5, (z + largura_listra) / 4.0); glVertex3f(30, 0, z + largura_listra)
+        glTexCoord2f(7.5, z / 4.0); glVertex3f(30, 0, z)
         glEnd()
+
+    if grass_tex is not None:
+        glDisable(GL_TEXTURE_2D)
 
     # Linhas do campo
     glColor3f(1.0, 1.0, 1.0)
