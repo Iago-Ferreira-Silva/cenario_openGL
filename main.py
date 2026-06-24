@@ -5,7 +5,7 @@ from OpenGL.GLU import *
 
 #Imports
 from camera import Camera
-from utils import setup_lighting, load_texture
+from utils import setup_lighting, load_texture, draw_sun
 from stadium import draw_field, draw_grandstands, draw_goal, build_crowd_list, draw_crowd
 from entities import draw_boneco, draw_ball
 
@@ -63,6 +63,8 @@ def main():
         glTranslatef(-cam.x, -cam.y, -cam.z)
         
         #Cenario
+        #Cenario
+        draw_sun()
         draw_field(grass_tex)
         draw_grandstands()
         draw_crowd()
