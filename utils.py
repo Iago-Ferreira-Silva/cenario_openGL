@@ -23,23 +23,23 @@ def load_texture(image_path):
 def setup_lighting():
     glEnable(GL_LIGHTING)
     glEnable(GL_LIGHT0)
-    glEnable(GL_COLOR_MATERIAL) # Permite usar glColor junto com iluminação
+    glEnable(GL_COLOR_MATERIAL)
     glColorMaterial(GL_FRONT_AND_BACK, GL_AMBIENT_AND_DIFFUSE)
     glShadeModel(GL_SMOOTH)
 
-    # Configuração da luz (posição e cor)
-    light_pos = [20.0, 100.0, 20.0, 0.0] # Luz direcional simulando o sol a pino
-    light_ambient = [0.5, 0.5, 0.5, 1.0] # Ambiente mais iluminado (dia)
-    light_diffuse = [0.9, 0.9, 0.8, 1.0] # Luz difusa levemente amarelada
+    #Luz.pos.cor
+    light_pos = [20.0, 100.0, 20.0, 0.0]
+    light_ambient = [0.5, 0.5, 0.5, 1.0]
+    light_diffuse = [0.9, 0.9, 0.8, 1.0]
 
     glLightfv(GL_LIGHT0, GL_POSITION, light_pos)
     glLightfv(GL_LIGHT0, GL_AMBIENT, light_ambient)
     glLightfv(GL_LIGHT0, GL_DIFFUSE, light_diffuse)
     
-    # Remover o reflexo branco (specular) da luz
+    #Sem.reflexo
     glLightfv(GL_LIGHT0, GL_SPECULAR, [0.0, 0.0, 0.0, 1.0])
     
-    # Material padrão sem reflexo
+    #Mat.padrao
     glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, [0.0, 0.0, 0.0, 1.0])
     glMateriali(GL_FRONT_AND_BACK, GL_SHININESS, 0)
 
@@ -50,12 +50,12 @@ def draw_cube(x, y, z, width, height, depth, color):
     glColor3f(*color)
     
     vertices = [
-        [1, 1, -1], [-1, 1, -1], [-1, 1, 1], [1, 1, 1], # Topo
-        [1, -1, 1], [-1, -1, 1], [-1, -1, -1], [1, -1, -1], # Base
-        [1, 1, 1], [-1, 1, 1], [-1, -1, 1], [1, -1, 1], # Frente
-        [1, -1, -1], [-1, -1, -1], [-1, 1, -1], [1, 1, -1], # Trás
-        [-1, 1, 1], [-1, 1, -1], [-1, -1, -1], [-1, -1, 1], # Esquerda
-        [1, 1, -1], [1, 1, 1], [1, -1, 1], [1, -1, -1] # Direita
+        [1, 1, -1], [-1, 1, -1], [-1, 1, 1], [1, 1, 1],
+        [1, -1, 1], [-1, -1, 1], [-1, -1, -1], [1, -1, -1],
+        [1, 1, 1], [-1, 1, 1], [-1, -1, 1], [1, -1, 1],
+        [1, -1, -1], [-1, -1, -1], [-1, 1, -1], [1, 1, -1],
+        [-1, 1, 1], [-1, 1, -1], [-1, -1, -1], [-1, -1, 1],
+        [1, 1, -1], [1, 1, 1], [1, -1, 1], [1, -1, -1]
     ]
     
     normals = [

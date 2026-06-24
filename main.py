@@ -3,13 +3,13 @@ from pygame.locals import *
 from OpenGL.GL import *
 from OpenGL.GLU import *
 
-# Imports modulares
+#Imports
 from camera import Camera
 from utils import setup_lighting, load_texture
 from stadium import draw_field, draw_grandstands, draw_goal, build_crowd_list, draw_crowd
 from entities import draw_boneco, draw_ball
 
-# Configurações da Janela
+#Tam.janela
 WINDOW_WIDTH = 1280
 WINDOW_HEIGHT = 720
 
@@ -19,29 +19,29 @@ def main():
     pygame.display.set_mode(display, DOUBLEBUF | OPENGL)
     pygame.display.set_caption("Estádio de Futebol OpenGL")
 
-    # Configuração da projeção 3D
+    #Proj.3D
     glMatrixMode(GL_PROJECTION)
     gluPerspective(60, (display[0] / display[1]), 0.1, 200.0)
     
-    # Habilitar teste de profundidade (para objetos não sobreporem errado)
+    #Z-buffer
     glEnable(GL_DEPTH_TEST)
     
-    # Habilitar iluminação
+    #Luz
     setup_lighting()
     
-    # Construir display list da torcida (para não lagar o jogo)
+    #Otimiz.torcida
     build_crowd_list()
     
-    # Carregar texturas
+    #Texturas
     grass_tex = load_texture("grass.png")
     
-    # Cor de fundo (Céu azul claro radiante de dia)
+    #Cor.fundo
     glClearColor(0.4, 0.75, 1.0, 1.0)
 
     clock = pygame.time.Clock()
     running = True
     
-    # Inicializa a câmera
+    #Cam
     cam = Camera()
     
     while running:
@@ -57,26 +57,26 @@ def main():
         glMatrixMode(GL_MODELVIEW)
         glLoadIdentity()
         
-        # Rotação e Translação da Câmera
+        #Transf.cam
         glRotatef(-cam.pitch, 1, 0, 0)
         glRotatef(-cam.yaw, 0, 1, 0)
         glTranslatef(-cam.x, -cam.y, -cam.z)
         
-        # Desenhando o Cenário
+        #Cenario
         draw_field(grass_tex)
         draw_grandstands()
-        draw_crowd() # Desenha a multidão de pessoas
+        draw_crowd()
         draw_goal(-38)
         draw_goal(38)
         
-        # Desenhando o Boneco no centro
+        #Jogador
         draw_boneco()
         
-        # Desenhando a bola
+        #Bola
         draw_ball()
         
         pygame.display.flip()
-        clock.tick(60) # 60 FPS
+        clock.tick(60)
 
     pygame.quit()
 
