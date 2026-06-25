@@ -2,6 +2,8 @@ from OpenGL.GL import *
 from OpenGL.GLU import *
 import pygame
 
+sol_pos = (20, 60, -90)
+
 def load_texture(image_path):
     textureSurface = pygame.image.load(image_path)
     textureData = pygame.image.tostring(textureSurface, "RGBA", 1)
@@ -27,7 +29,12 @@ def setup_lighting():
     glColorMaterial(GL_FRONT_AND_BACK, GL_AMBIENT_AND_DIFFUSE)
     glShadeModel(GL_SMOOTH)
 
+<<<<<<< HEAD
     light_pos = [20.0, 100.0, 20.0, 0.0]
+=======
+    #Luz.pos.cor
+    light_pos = [sol_pos[0], sol_pos[1], sol_pos[2], 1]
+>>>>>>> 147250f9c88a9572742b98a4c3159c041e2871f9
     light_ambient = [0.5, 0.5, 0.5, 1.0]
     light_diffuse = [0.9, 0.9, 0.8, 1.0]
 
@@ -67,3 +74,22 @@ def draw_cube(x, y, z, width, height, depth, color):
     glEnd()
     
     glPopMatrix()
+
+def draw_sun():
+    quad = gluNewQuadric()
+
+    glPushMatrix()
+
+    glDisable(GL_LIGHTING)
+
+    glTranslatef(sol_pos[0], sol_pos[1], sol_pos[2])
+
+    glColor3f(1.0, 0.95, 0.2)
+
+    gluSphere(quad, 5, 20, 20)
+
+    glEnable(GL_LIGHTING)
+
+    glPopMatrix()
+
+    gluDeleteQuadric(quad)

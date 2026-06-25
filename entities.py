@@ -1,7 +1,7 @@
 from OpenGL.GL import *
 from OpenGL.GLU import *
 import math
-from utils import draw_cube
+from utils import draw_cube, sol_pos
 
 def draw_boneco():
     cor_pele = (0.9, 0.7, 0.6)
@@ -15,14 +15,42 @@ def draw_boneco():
     glTranslatef(0, 0, 0)
     glScalef(0.6, 0.6, 0.6)
 
+<<<<<<< HEAD
+=======
+    #Sombra
+    player_x = 0
+    player_z = 0
+
+    offset_x = -(sol_pos[0] - player_x) * 0.02
+    offset_z = -(sol_pos[2] - player_z) * 0.006
+
+    shadow_x = offset_x
+    shadow_z = offset_z     
+
+
+>>>>>>> 147250f9c88a9572742b98a4c3159c041e2871f9
     glDisable(GL_LIGHTING)
-    glColor3f(0.1, 0.4, 0.1)
-    glBegin(GL_QUADS)
-    glVertex3f(-1.0, 0.02, -1.0)
-    glVertex3f(1.0, 0.02, -1.0)
-    glVertex3f(1.0, 0.02, 1.0)
-    glVertex3f(-1.0, 0.02, 1.0)
+
+    glEnable(GL_BLEND)
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA)
+
+    glColor4f(0.0, 0.0, 0.0, 0.55)
+
+    glBegin(GL_POLYGON)
+
+    for i in range(40):
+        ang = 2.0 * math.pi * i / 40
+
+        glVertex3f(
+            shadow_x + 1.25 * math.cos(ang),
+            0.02,
+            shadow_z + 0.75 * math.sin(ang)
+        )
+
     glEnd()
+
+    glDisable(GL_BLEND)
+
     glEnable(GL_LIGHTING)
 
     draw_cube(0, 3.9, 0, 0.42, 0.1, 0.42, cor_cabelo)
@@ -63,13 +91,40 @@ def draw_boneco():
     glPopMatrix()
 
 def draw_ball():
+<<<<<<< HEAD
+=======
+    # Sombra orientada pelo Sol
+
+    ball_x = 0
+    ball_y = 0.5
+    ball_z = -8
+
+    offset_x = -(sol_pos[0] - ball_x) * 0.006
+    offset_z = -(sol_pos[2] - ball_z) * 0.006
+
+>>>>>>> 147250f9c88a9572742b98a4c3159c041e2871f9
     glDisable(GL_LIGHTING)
-    glColor3f(0.1, 0.4, 0.1)
+
+    glEnable(GL_BLEND)
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA)
+
+    glColor4f(0.0, 0.0, 0.0, 0.35)
+
     glBegin(GL_POLYGON)
-    for i in range(20):
-        theta = 2.0 * math.pi * float(i) / 20.0
-        glVertex3f(0.5 * math.cos(theta), 0.02, -8 + 0.5 * math.sin(theta))
+
+    for i in range(30):
+        theta = 2.0 * math.pi * i / 30
+
+        glVertex3f(
+            ball_x + offset_x + 0.45 * math.cos(theta),
+            0.02,
+            ball_z + offset_z + 0.30 * math.sin(theta)
+        )
+
     glEnd()
+
+    glDisable(GL_BLEND)
+
     glEnable(GL_LIGHTING)
 
     glPushMatrix()

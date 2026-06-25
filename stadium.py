@@ -2,7 +2,7 @@ from OpenGL.GL import *
 from OpenGL.GLU import *
 import math
 import random
-from utils import draw_cube
+from utils import draw_cube, sol_pos
 
 def draw_field(grass_tex=None):
     if grass_tex is not None:
@@ -28,6 +28,45 @@ def draw_field(grass_tex=None):
     if grass_tex is not None:
         glDisable(GL_TEXTURE_2D)
 
+<<<<<<< HEAD
+=======
+    # Terra ao redor do campo
+    glColor3f(0.45, 0.30, 0.15)  # marrom
+
+    glBegin(GL_QUADS)
+
+    # Atrás do gol superior
+    glVertex3f(-46, 0.0, -56)
+    glVertex3f( 46, 0.0, -56)
+    glVertex3f( 46, 0.0, -40)
+    glVertex3f(-46, 0.0, -40)
+
+    # Atrás do gol inferior
+    glVertex3f(-46, 0.0, 40)
+    glVertex3f( 46, 0.0, 40)
+    glVertex3f( 46, 0.0, 56)
+    glVertex3f(-46, 0.0, 56)
+
+    glEnd()
+
+    glBegin(GL_QUADS)
+
+    # Lateral esquerda
+    glVertex3f(-46, 0.0, -40)
+    glVertex3f(-30, 0.0, -40)
+    glVertex3f(-30, 0.0, 40)
+    glVertex3f(-46, 0.0, 40)
+
+    # Lateral direita
+    glVertex3f(30, 0.0, -40)
+    glVertex3f(46, 0.0, -40)
+    glVertex3f(46, 0.0, 40)
+    glVertex3f(30, 0.0, 40)
+
+    glEnd()
+
+    #Linhas
+>>>>>>> 147250f9c88a9572742b98a4c3159c041e2871f9
     glColor3f(1.0, 1.0, 1.0)
     glLineWidth(3.0)
     
@@ -192,6 +231,113 @@ def draw_grandstands():
 
 def draw_goal(z_pos):
     glColor3f(0.9, 0.9, 0.9)
+<<<<<<< HEAD
+=======
+    glEnable(GL_POLYGON_OFFSET_FILL)
+    glPolygonOffset(-1.0, -1.0)
+    # Sombra do travessão
+    glDisable(GL_LIGHTING)
+
+    glEnable(GL_BLEND)
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA)
+
+    glColor4f(0.0, 0.0, 0.0, 0.35)
+
+    # deslocamento na direção oposta ao Sol
+    sun_x, sun_y, sun_z = sol_pos
+
+    crossbar_height = 9
+
+    shadow_x = crossbar_height * (0 - sun_x) / sun_y
+    shadow_z = crossbar_height * (z_pos - sun_z) / sun_y
+
+    draw_cube(
+        shadow_x,
+        0.08,
+        z_pos + shadow_z,
+        4.15,
+        0.01,
+        0.25,
+        (0.0, 0.0, 0.0)
+    )
+
+    post_height = 3.0
+
+    # Poste esquerdo
+    post_shadow_x = post_height * (-4 - sun_x) / sun_y
+    post_shadow_z = post_height * (z_pos - sun_z) / sun_y
+
+    glBegin(GL_QUADS)
+
+    largura = 0.4
+
+    glVertex3f(-4 - largura, 0.02, z_pos)
+    glVertex3f(-4 + largura, 0.02, z_pos)
+
+    glVertex3f(
+        -4 + post_shadow_x + largura,
+        0.02,
+        z_pos + post_shadow_z
+    )
+
+    glVertex3f(
+        -4 + post_shadow_x - largura,
+        0.02,
+        z_pos + post_shadow_z
+    )
+
+    glEnd()
+
+    draw_cube(
+        -4 + post_shadow_x,
+        0.08,
+        z_pos + post_shadow_z,
+        0.15,
+        0.01,
+        0.25,
+        (0.0, 0.0, 0.0)
+    )
+
+    # Poste direito
+    post_shadow_x = post_height * (4 - sun_x) / sun_y
+    post_shadow_z = post_height * (z_pos - sun_z) / sun_y
+
+    glBegin(GL_QUADS)
+
+    largura = 0.4
+
+    glVertex3f(4 - largura, 0.02, z_pos)
+    glVertex3f(4 + largura, 0.02, z_pos)
+
+    glVertex3f(
+        4 + post_shadow_x + largura,
+        0.02,
+        z_pos + post_shadow_z
+    )
+
+    glVertex3f(
+        4 + post_shadow_x - largura,
+        0.02,
+        z_pos + post_shadow_z
+    )
+
+    glEnd()
+
+    draw_cube(
+        4 + post_shadow_x,
+        0.02,
+        z_pos + post_shadow_z,
+        0.15,
+        0.01,
+        0.25,
+        (0.0, 0.0, 0.0)
+    )
+    glDisable(GL_POLYGON_OFFSET_FILL)
+    glDisable(GL_BLEND)
+
+    glEnable(GL_LIGHTING)
+    #Tr.esq
+>>>>>>> 147250f9c88a9572742b98a4c3159c041e2871f9
     draw_cube(-4, 1.5, z_pos, 0.15, 1.5, 0.15, (0.9, 0.9, 0.9))
     draw_cube(4, 1.5, z_pos, 0.15, 1.5, 0.15, (0.9, 0.9, 0.9))
     draw_cube(0, 3.15, z_pos, 4.15, 0.15, 0.15, (0.9, 0.9, 0.9))
