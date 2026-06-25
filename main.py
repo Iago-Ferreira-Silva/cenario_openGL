@@ -5,7 +5,7 @@ from OpenGL.GLU import *
 
 from camera import Camera
 from utils import setup_lighting, load_texture, draw_sun
-from stadium import draw_field, draw_grandstands, draw_goal, build_crowd_list, draw_crowd
+from stadium import draw_field, draw_grandstands, draw_goal, build_crowd_list, draw_crowd, draw_stadium_shadow
 from entities import draw_boneco, draw_ball
 
 WINDOW_WIDTH = 1280
@@ -54,6 +54,7 @@ def main():
         
         draw_sun()
         draw_field(grass_tex)
+        draw_stadium_shadow()
         draw_grandstands()
         draw_crowd()
         draw_goal(-38)

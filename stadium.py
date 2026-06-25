@@ -233,7 +233,7 @@ def draw_goal(z_pos):
 
     sun_x, sun_y, sun_z = sol_pos
 
-    crossbar_height = 9
+    crossbar_height = 3.0
 
     shadow_x = crossbar_height * (0 - sun_x) / sun_y
     shadow_z = crossbar_height * (z_pos - sun_z) / sun_y
@@ -310,7 +310,7 @@ def draw_goal(z_pos):
 
     draw_cube(
         4 + post_shadow_x,
-        0.02,
+        0.08,
         z_pos + post_shadow_z,
         0.15,
         0.01,
@@ -408,3 +408,44 @@ def build_crowd_list():
 def draw_crowd():
     if crowd_list is not None:
         glCallList(crowd_list)
+
+def draw_stadium_shadow():
+    sun_x, sun_y, sun_z = sol_pos
+    
+    # Se o sol estiver no lado oposto (z > 0), não projeta sombra no lado de cá
+    if sun_z > -40:
+        return
+        
+    # Altura aproximada da cobertura do estádio
+    roof_height = 15.0
+    
+    # Projeção da borda frontal do teto (z = -40)
+    offset_x = -roof_height * sun_x / sun_y
+    offset_z = -roof_height * (sun_z - (-40)) / sun_y
+    
+    z_front_shadow = -40 + offset_z
+    
+    # Se a sombra projetar para fora do campo (atrás do gol), não desenha
+    if z_front_shadow < -40:
+        return
+        
+    glDisable(GL_LIGHTING)
+    glEnable(GL_BLEND)
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA)
+    
+    # Sombra suave translúcida (preta com opacidade 0.22)
+    glColor4f(0.0, 0.0, 0.0, 0.22)
+    
+    glBegin(GL_QUADS)
+    # Canto traseiro esquerdo do limite do campo (z = -40)
+    glVertex3f(-46, 0.012, -40)
+    # Canto frontal esquerdo projetado
+    glVertex3f(-46 + offset_x, 0.012, z_front_shadow)
+    # Canto frontal direito projetado
+    glVertex3f(46 + offset_x, 0.012, z_front_shadow)
+    # Canto traseiro direito do limite do campo (z = -40)
+    glVertex3f(46, 0.012, -40)
+    glEnd()
+    
+    glDisable(GL_BLEND)
+    glEnable(GL_LIGHTING)

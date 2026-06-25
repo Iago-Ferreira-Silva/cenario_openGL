@@ -2,7 +2,7 @@ from OpenGL.GL import *
 from OpenGL.GLU import *
 import pygame
 
-sol_pos = (20, 60, -90)
+sol_pos = (20, 48, -105)
 
 def load_texture(image_path):
     textureSurface = pygame.image.load(image_path)
