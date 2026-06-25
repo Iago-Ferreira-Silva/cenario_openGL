@@ -52,12 +52,7 @@ def main():
         glRotatef(-cam.yaw, 0, 1, 0)
         glTranslatef(-cam.x, -cam.y, -cam.z)
         
-<<<<<<< HEAD
-=======
-        #Cenario
-        #Cenario
         draw_sun()
->>>>>>> 147250f9c88a9572742b98a4c3159c041e2871f9
         draw_field(grass_tex)
         draw_grandstands()
         draw_crowd()

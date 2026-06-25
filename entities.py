@@ -15,9 +15,6 @@ def draw_boneco():
     glTranslatef(0, 0, 0)
     glScalef(0.6, 0.6, 0.6)
 
-<<<<<<< HEAD
-=======
-    #Sombra
     player_x = 0
     player_z = 0
 
@@ -28,7 +25,6 @@ def draw_boneco():
     shadow_z = offset_z     
 
 
->>>>>>> 147250f9c88a9572742b98a4c3159c041e2871f9
     glDisable(GL_LIGHTING)
 
     glEnable(GL_BLEND)
@@ -91,9 +87,6 @@ def draw_boneco():
     glPopMatrix()
 
 def draw_ball():
-<<<<<<< HEAD
-=======
-    # Sombra orientada pelo Sol
 
     ball_x = 0
     ball_y = 0.5
@@ -102,7 +95,6 @@ def draw_ball():
     offset_x = -(sol_pos[0] - ball_x) * 0.006
     offset_z = -(sol_pos[2] - ball_z) * 0.006
 
->>>>>>> 147250f9c88a9572742b98a4c3159c041e2871f9
     glDisable(GL_LIGHTING)
 
     glEnable(GL_BLEND)

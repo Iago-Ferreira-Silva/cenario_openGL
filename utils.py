@@ -29,12 +29,7 @@ def setup_lighting():
     glColorMaterial(GL_FRONT_AND_BACK, GL_AMBIENT_AND_DIFFUSE)
     glShadeModel(GL_SMOOTH)
 
-<<<<<<< HEAD
-    light_pos = [20.0, 100.0, 20.0, 0.0]
-=======
-    #Luz.pos.cor
     light_pos = [sol_pos[0], sol_pos[1], sol_pos[2], 1]
->>>>>>> 147250f9c88a9572742b98a4c3159c041e2871f9
     light_ambient = [0.5, 0.5, 0.5, 1.0]
     light_diffuse = [0.9, 0.9, 0.8, 1.0]
 

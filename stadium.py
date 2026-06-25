@@ -28,20 +28,15 @@ def draw_field(grass_tex=None):
     if grass_tex is not None:
         glDisable(GL_TEXTURE_2D)
 
-<<<<<<< HEAD
-=======
-    # Terra ao redor do campo
-    glColor3f(0.45, 0.30, 0.15)  # marrom
+    glColor3f(0.45, 0.30, 0.15)
 
     glBegin(GL_QUADS)
 
-    # Atrás do gol superior
     glVertex3f(-46, 0.0, -56)
     glVertex3f( 46, 0.0, -56)
     glVertex3f( 46, 0.0, -40)
     glVertex3f(-46, 0.0, -40)
 
-    # Atrás do gol inferior
     glVertex3f(-46, 0.0, 40)
     glVertex3f( 46, 0.0, 40)
     glVertex3f( 46, 0.0, 56)
@@ -51,13 +46,11 @@ def draw_field(grass_tex=None):
 
     glBegin(GL_QUADS)
 
-    # Lateral esquerda
     glVertex3f(-46, 0.0, -40)
     glVertex3f(-30, 0.0, -40)
     glVertex3f(-30, 0.0, 40)
     glVertex3f(-46, 0.0, 40)
 
-    # Lateral direita
     glVertex3f(30, 0.0, -40)
     glVertex3f(46, 0.0, -40)
     glVertex3f(46, 0.0, 40)
@@ -65,8 +58,6 @@ def draw_field(grass_tex=None):
 
     glEnd()
 
-    #Linhas
->>>>>>> 147250f9c88a9572742b98a4c3159c041e2871f9
     glColor3f(1.0, 1.0, 1.0)
     glLineWidth(3.0)
     
@@ -231,11 +222,8 @@ def draw_grandstands():
 
 def draw_goal(z_pos):
     glColor3f(0.9, 0.9, 0.9)
-<<<<<<< HEAD
-=======
     glEnable(GL_POLYGON_OFFSET_FILL)
     glPolygonOffset(-1.0, -1.0)
-    # Sombra do travessão
     glDisable(GL_LIGHTING)
 
     glEnable(GL_BLEND)
@@ -243,7 +231,6 @@ def draw_goal(z_pos):
 
     glColor4f(0.0, 0.0, 0.0, 0.35)
 
-    # deslocamento na direção oposta ao Sol
     sun_x, sun_y, sun_z = sol_pos
 
     crossbar_height = 9
@@ -263,7 +250,6 @@ def draw_goal(z_pos):
 
     post_height = 3.0
 
-    # Poste esquerdo
     post_shadow_x = post_height * (-4 - sun_x) / sun_y
     post_shadow_z = post_height * (z_pos - sun_z) / sun_y
 
@@ -298,7 +284,6 @@ def draw_goal(z_pos):
         (0.0, 0.0, 0.0)
     )
 
-    # Poste direito
     post_shadow_x = post_height * (4 - sun_x) / sun_y
     post_shadow_z = post_height * (z_pos - sun_z) / sun_y
 
@@ -336,8 +321,6 @@ def draw_goal(z_pos):
     glDisable(GL_BLEND)
 
     glEnable(GL_LIGHTING)
-    #Tr.esq
->>>>>>> 147250f9c88a9572742b98a4c3159c041e2871f9
     draw_cube(-4, 1.5, z_pos, 0.15, 1.5, 0.15, (0.9, 0.9, 0.9))
     draw_cube(4, 1.5, z_pos, 0.15, 1.5, 0.15, (0.9, 0.9, 0.9))
     draw_cube(0, 3.15, z_pos, 4.15, 0.15, 0.15, (0.9, 0.9, 0.9))
