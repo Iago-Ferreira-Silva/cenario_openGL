@@ -27,7 +27,6 @@ def setup_lighting():
     glColorMaterial(GL_FRONT_AND_BACK, GL_AMBIENT_AND_DIFFUSE)
     glShadeModel(GL_SMOOTH)
 
-    #Luz.pos.cor
     light_pos = [20.0, 100.0, 20.0, 0.0]
     light_ambient = [0.5, 0.5, 0.5, 1.0]
     light_diffuse = [0.9, 0.9, 0.8, 1.0]
@@ -36,10 +35,8 @@ def setup_lighting():
     glLightfv(GL_LIGHT0, GL_AMBIENT, light_ambient)
     glLightfv(GL_LIGHT0, GL_DIFFUSE, light_diffuse)
     
-    #Sem.reflexo
     glLightfv(GL_LIGHT0, GL_SPECULAR, [0.0, 0.0, 0.0, 1.0])
     
-    #Mat.padrao
     glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, [0.0, 0.0, 0.0, 1.0])
     glMateriali(GL_FRONT_AND_BACK, GL_SHININESS, 0)
 

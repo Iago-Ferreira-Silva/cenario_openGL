@@ -13,10 +13,8 @@ def draw_boneco():
 
     glPushMatrix()
     glTranslatef(0, 0, 0)
-    #Escala
     glScalef(0.6, 0.6, 0.6)
 
-    #Sombra
     glDisable(GL_LIGHTING)
     glColor3f(0.1, 0.4, 0.1)
     glBegin(GL_QUADS)
@@ -27,19 +25,15 @@ def draw_boneco():
     glEnd()
     glEnable(GL_LIGHTING)
 
-    #Cabelo
     draw_cube(0, 3.9, 0, 0.42, 0.1, 0.42, cor_cabelo)
-    #Cabeca
     draw_cube(0, 3.5, 0, 0.4, 0.4, 0.4, cor_pele)
     
-    #Tronco
     glPushMatrix()
     glTranslatef(0, 2.0, 0)
     glRotatef(10, 1, 0, 0)
     draw_cube(0, 0, 0, 0.6, 0.8, 0.3, cor_camisa)
     glPopMatrix()
     
-    #Braco.esq
     glPushMatrix()
     glTranslatef(-0.8, 2.4, 0)
     glRotatef(-20, 1, 0, 0)
@@ -47,7 +41,6 @@ def draw_boneco():
     draw_cube(0, -1.4, 0, 0.15, 0.4, 0.15, cor_pele)
     glPopMatrix()
     
-    #Braco.dir
     glPushMatrix()
     glTranslatef(0.8, 2.4, 0)
     glRotatef(20, 1, 0, 0)
@@ -55,12 +48,10 @@ def draw_boneco():
     draw_cube(0, -1.4, 0, 0.15, 0.4, 0.15, cor_pele)
     glPopMatrix()
     
-    #Perna.esq
     draw_cube(-0.3, 1.0, 0, 0.25, 0.4, 0.25, cor_short)
     draw_cube(-0.3, 0.4, 0, 0.2, 0.4, 0.2, cor_meia)
     draw_cube(-0.3, 0.1, 0.1, 0.22, 0.1, 0.3, cor_chuteira)
     
-    #Perna.dir
     glPushMatrix()
     glTranslatef(0.3, 1.4, 0)
     glRotatef(-30, 1, 0, 0)
@@ -72,7 +63,6 @@ def draw_boneco():
     glPopMatrix()
 
 def draw_ball():
-    #Sombra
     glDisable(GL_LIGHTING)
     glColor3f(0.1, 0.4, 0.1)
     glBegin(GL_POLYGON)
@@ -89,7 +79,6 @@ def draw_ball():
     gluSphere(quadric, 0.5, 32, 32)
     gluDeleteQuadric(quadric)
     
-    #Detalhes
     glColor3f(0.1, 0.1, 0.1)
     for rot in range(0, 360, 45):
         glPushMatrix()
